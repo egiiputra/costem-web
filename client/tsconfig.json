@@ -5,6 +5,10 @@
 		"checkJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
+		"lib": [
+			"DOM.Iterable",
+			"ES2015"
+		],
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
