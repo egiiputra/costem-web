@@ -9,6 +9,7 @@ model = tf.keras.applications.VGG16(
 
 model.load_weights("models/vgg16-original-adam.weights.h5")
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
 tflite_model = converter.convert()
 
 with open("models/vgg16-original-adam.tflite", "wb") as f:
