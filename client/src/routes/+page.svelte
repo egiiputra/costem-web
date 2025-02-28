@@ -1,51 +1,44 @@
 <script lang="ts">
-    let files: FileList[] | [] = $state([]);
+	let files: FileList | undefined = $state();
 
-    function dropHandler(ev: DragEvent) {
-        console.log("File(s) dropped");
+	$inspect(files);
 
-        // Prevent default behavior (Prevent file from being opened)
-        ev.preventDefault();
-
-        console.log(ev.dataTransfer?.files);
-        for (let i = 0; i < ev.dataTransfer?.files?.length ?? 0; i++) {
-            files.push(ev.dataTransfer?.files.item(i));
-        }
-    }
-    function dragOverHandler(ev: DragEvent) {
-        console.log("File(s) in drop zone");
-
-        // Prevent default behavior (Prevent file from being opened)
-        ev.preventDefault();
-    }
-    $inspect(files);
+	function predicts() {
+		fetch('localhost:8000/predicts', {
+			method: 'POST',
+			body: JSON.stringify({ username: 'example' }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+	}
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<form action="" onsubmit={predicts}>
+	<input
+		id="files"
+		type="file"
+		class="file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100 dark:file:bg-violet-600 dark:file:text-violet-100 dark:hover:file:bg-violet-500"
+		bind:files
+		multiple
+	/>
+	<button
+		class="mr-4 rounded-full border-0 bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:bg-violet-600 dark:text-violet-100 dark:hover:bg-violet-500"
+	>
+		Try samples
+	</button>
 
-<div
-    id="drop_zone"
-    role="region"
-    aria-labelledby="file-drop-label"
-    ondrop={dropHandler}
-    ondragover={dragOverHandler}>
-    <p>Drag one or more files to this <i>drop zone</i>.</p>
-</div>
-<div>
-    <ul>
-        {#each files as file}
-        <li>
-            <span>{file.name}</span>
-        </li>
-        {/each}
-    </ul>
-</div>
-
-<style>
-    #drop_zone {
-        border: 5px solid blue;
-        width: 200px;
-        height: 100px;
-    }
-</style>
+	<button
+		class="mr-4 rounded-full border-0 bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:bg-violet-600 dark:text-violet-100 dark:hover:bg-violet-500"
+		onclick={predicts}
+	>
+		Predicts
+	</button>
+	<ul>
+		{#each files as file}
+			<li>
+				<span>{file.name}</span>
+			</li>
+		{/each}
+	</ul>
+</form>
