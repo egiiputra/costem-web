@@ -8,7 +8,7 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
-
+	import Navbar from './Navbar.svelte';
 	interface Scores {
 		sehat: number;
 		giberella: number;
@@ -51,6 +51,8 @@
 		});
 	}
 </script>
+
+<Navbar />
 
 <Label for="with_helper" class="pb-2">Upload file</Label>
 <Fileupload id="with_helper" class="mb-2" accept="image/jpeg,image/png" bind:files multiple />
