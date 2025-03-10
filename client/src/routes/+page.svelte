@@ -57,13 +57,20 @@
 <Helper>PNG or JPG; MAX: 2MB</Helper>
 
 <Table>
-	<TableHead>
-		<TableHeadCell>Product name</TableHeadCell>
-		<TableHeadCell>Color</TableHeadCell>
-		<TableHeadCell>Category</TableHeadCell>
-		<TableHeadCell>Price</TableHeadCell>
+	<TableHead defaultRow={false}>
+		<tr>
+			<TableHeadCell rowspan="2">Thumbnail</TableHeadCell>
+			<TableHeadCell rowspan="2">Filename</TableHeadCell>
+			<TableHeadCell colspan="3">Scores</TableHeadCell>
+			<TableHeadCell rowspan="2">Results</TableHeadCell>
+		</tr>
+		<tr>
+			<TableHeadCell>sehat</TableHeadCell>
+			<TableHeadCell>giberella</TableHeadCell>
+			<TableHeadCell>anthracnose</TableHeadCell>
+		</tr>
 	</TableHead>
-	<TableBody tableBodyClass="divide-y">
+<!--	<TableBody tableBodyClass="divide-y">
 		<TableBodyRow>
 			<TableBodyCell>Apple MacBook Pro 17"</TableBodyCell>
 			<TableBodyCell>Sliver</TableBodyCell>
@@ -82,7 +89,7 @@
 			<TableBodyCell>Accessories</TableBodyCell>
 			<TableBodyCell>$99</TableBodyCell>
 		</TableBodyRow>
-	</TableBody>
+	</TableBody>-->
 </Table>
 <form action="" onsubmit={predicts}>
 	<input
